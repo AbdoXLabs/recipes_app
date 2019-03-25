@@ -17,6 +17,7 @@ import 'package:recipes_app/configs/config.dart';
 import 'package:share/share.dart';
 
 import 'package:package_info/package_info.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key, this.title}) : super(key: key);
@@ -42,6 +43,8 @@ class _MainPageState extends State<MainPage>
   String _searchText = '';
   List searchResult = new List();
 
+  static final String GDPR_KEY = "GDPR_KEY";
+
 //  BannerAd _bannerAd;
 
   final List<Tab> tabs = <Tab>[
@@ -64,7 +67,47 @@ class _MainPageState extends State<MainPage>
     viewModel = MainPageViewModel(api: RecipesService());
     tabController = TabController(vsync: this, length: tabs.length);
     loadData();
+
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async => _gdpr());
   }
+
+
+  Future<void> _gdpr() async {
+    // load event from shared prefs
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool(GDPR_KEY) == null) {
+      return await showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Accept Terms and conditions of use'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Accept'),
+                onPressed: () {
+                  //
+                  // set GDPR is accepted in prefs
+                  //
+                  prefs.setBool(GDPR_KEY, true);
+                  // dismiss dialog
+                  Navigator.of(context).pop();
+                },
+              ),
+              FlatButton(
+                child: Text('Read Terms'),
+                onPressed: () {
+                  WebUtils.launchURL(Config.terms_url);
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
 
   var new_recipes, category, fav, rate, share, terms, about;
 
