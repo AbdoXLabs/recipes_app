@@ -26,13 +26,13 @@ dependencies:
   scoped_model: ^0.3.0
   font_awesome_flutter: ^8.0.1
   http: any
-  url_launcher: ^4.0.3
+  url_launcher: ^3.0.0
   share: ^0.5.3
-  flutter_html: ^0.8.2
   shared_preferences: ^0.4.3
   html: ^0.13.3+3
   #firebase_admob:
   package_info: ^0.3.2
+  flutter_webview_plugin: ^0.3.3
 
 dev_dependencies:
   flutter_test:

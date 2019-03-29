@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:recipes_app/configs/config.dart';
 import 'package:recipes_app/models/item_recipes.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:recipes_app/utils/admob_utils.dart';
+import 'package:recipes_app/utils/lang.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:recipes_app/utils/web_utils.dart';
 import 'package:share/share.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class RecipeDetails extends StatefulWidget {
   RecipeDetails({Key key, this.recipe}) : super(key: key);
@@ -54,8 +54,8 @@ class _RecipeDetailsState extends State<RecipeDetails> {
   @override
   Widget build(BuildContext context) {
 
-    String text = "<html dir='rtl'><head>" +
-        "<style type=\"text/css\">body{color: #525252;}" +
+    String text = "<!DOCTYPE html><html dir=${Lang.isArabic(widget.recipe.news_description) ? 'rtl' : 'ltr'}><head>" +
+        "<style type=\"text/css\">body{color: #525252; font-size: 30px;}" +
         "</style></head>" +
         "<body>" +
         widget.recipe.news_description +
@@ -144,19 +144,13 @@ class _RecipeDetailsState extends State<RecipeDetails> {
           body: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
-              child: ListView(
-                children: <Widget>[
-                  Html(
-                    data: text,
-                    padding: EdgeInsets.all(8.0),
-                    defaultTextStyle: TextStyle(
-                      fontSize: 14.0,
-                    ),
-                  ),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: WebviewScaffold(
+                  url: Uri.dataFromString(text, mimeType: 'text/html').toString(),
+                ),
               ),
-            ),
           )),
-    );
+    ));
   }
 }
