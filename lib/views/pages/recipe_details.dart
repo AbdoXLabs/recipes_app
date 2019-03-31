@@ -148,6 +148,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 child: WebviewScaffold(
                   url: Uri.dataFromString(text, mimeType: 'text/html').toString(),
+                  resizeToAvoidBottomInset: true,
                 ),
               ),
           )),
