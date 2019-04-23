@@ -1,4 +1,4 @@
-//import 'package:firebase_admob/firebase_admob.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:recipes_app/models/item_category.dart';
 import 'package:recipes_app/configs/config.dart';
@@ -12,7 +12,7 @@ class CategoryListItem extends StatelessWidget {
   final ItemCategory itemCategory;
   final double item_hight = 140.0;
 
-  //InterstitialAd _interstitial;
+  InterstitialAd _interstitial;
 
   CategoryListItem({@required this.itemCategory});
 
@@ -68,14 +68,14 @@ class CategoryListItem extends StatelessWidget {
       )
     );
 
-/*
+
     AdmobUtils.createInterstitialAd()
       ..load()
       ..show(
         anchorType: AnchorType.bottom,
         anchorOffset: 0.0,
       );
-*/
+
   }
 
 }

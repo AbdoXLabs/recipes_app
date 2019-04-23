@@ -1,4 +1,4 @@
-//import 'package:firebase_admob/firebase_admob.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:recipes_app/utils/admob_utils.dart';
 import 'dart:async';
@@ -45,7 +45,7 @@ class _MainPageState extends State<MainPage>
 
   static final String GDPR_KEY = "GDPR_KEY";
 
-//  BannerAd _bannerAd;
+  BannerAd _bannerAd;
 
   final List<Tab> tabs = <Tab>[
     Tab(text: 'CATEGORY'),
@@ -62,7 +62,7 @@ class _MainPageState extends State<MainPage>
   void initState() {
     super.initState();
     // init banner ad
-//    _bannerAd = AdmobUtils.createBannerAd()..load();
+    _bannerAd = AdmobUtils.createBannerAd()..load();
 
     viewModel = MainPageViewModel(api: RecipesService());
     tabController = TabController(vsync: this, length: tabs.length);
@@ -81,27 +81,79 @@ class _MainPageState extends State<MainPage>
         context: context,
         barrierDismissible: false, // user must tap button!
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Accept Terms and conditions of use'),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('Accept'),
-                onPressed: () {
-                  //
-                  // set GDPR is accepted in prefs
-                  //
-                  prefs.setBool(GDPR_KEY, true);
-                  // dismiss dialog
-                  Navigator.of(context).pop();
-                },
+          return Material(
+            type: MaterialType.transparency,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 100, horizontal: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                      boxShadow: [BoxShadow(color: Colors.black38, blurRadius: 15.0)],
+                      borderRadius: BorderRadius.circular(12),),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListView(
+                        children: <Widget>[
+                          Column(
+                            children: <Widget>[
+                              SizedBox(
+                                height: 24,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text('AdMob ads', style: TextStyle(fontSize: 18, color: Colors.black87), textAlign: TextAlign.center,),
+                              ),
+                              Text('We care about your privecy and data security. We keep this app free by shoing ads.', style: TextStyle(fontSize: 14, color: Colors.black54), textAlign: TextAlign.center,),
+                              SizedBox(
+                                height: 24,
+                              ),
+                              Text('Can we continue to use your data to tailor ads you?', style: TextStyle(fontSize: 16, color: Colors.black87), textAlign: TextAlign.center,),
+                              SizedBox(
+                                height: 24,
+                              ),
+                              Text('You can change your choice anytime for AdMob ads in the app settings. Our partners will collect data and use a unique identifier on your device to show you ads.', style: TextStyle(fontSize: 13, color: Colors.black54), textAlign: TextAlign.center,),
+                              SizedBox(
+                                height: 24,
+                              ),
+                              OutlineButton(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
+                                  child: Text('Yes, continue to see relevant ads', style: TextStyle(color: Colors.blue, fontSize: 17),),
+                                ),
+                                onPressed: () {
+                                  Config.personalizedAds = true;
+                                  prefs.setBool(GDPR_KEY, true);
+                                  // dismiss dialog
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                              SizedBox(
+                                height: 18,
+                              ),
+                              OutlineButton(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
+                                  child: Text('No, see ads that are less relevant', style: TextStyle(color: Colors.blue, fontSize: 17),),
+                                ),
+                                onPressed: () {
+                                  Config.personalizedAds = false;
+                                  prefs.setBool(GDPR_KEY, true);
+                                  // dismiss dialog
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ),
-              FlatButton(
-                child: Text('Read Terms'),
-                onPressed: () {
-                  WebUtils.launchURL(Config.terms_url);
-                },
-              ),
-            ],
+            ),
           );
         },
       );
@@ -307,9 +359,9 @@ class _MainPageState extends State<MainPage>
 
     printBundelID();
 
-//    _bannerAd
-//      ..load()
-//      ..show();
+    _bannerAd
+      ..load()
+      ..show();
 
     init_drawer(context);
     return new Scaffold(

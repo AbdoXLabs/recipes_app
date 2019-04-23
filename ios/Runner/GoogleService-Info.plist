@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>15778924080-r317ddjlrcqia2ld915iiiub5jbuisbe.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.15778924080-r317ddjlrcqia2ld915iiiub5jbuisbe</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAPWYsoSsBEVCS7wJfFoSgqenrAW_YRYf8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>15778924080</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>ma.yalabs.recipesApp</string>
+	<key>PROJECT_ID</key>
+	<string>recipes-a5329</string>
+	<key>STORAGE_BUCKET</key>
+	<string>recipes-a5329.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:15778924080:ios:6b163bd83f3983ba</string>
+	<key>DATABASE_URL</key>
+	<string>https://recipes-a5329.firebaseio.com</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-8630423092275079~2611649187</string>
+</dict>
+</plist>

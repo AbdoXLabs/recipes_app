@@ -1,4 +1,3 @@
-/*
 
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:recipes_app/configs/config.dart';
@@ -36,5 +35,3 @@ class AdmobUtils {
     );
   }
 }
-
-*/

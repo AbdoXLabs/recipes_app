@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:recipes_app/utils/web_utils.dart';
 import 'package:share/share.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class RecipeDetails extends StatefulWidget {
   RecipeDetails({Key key, this.recipe}) : super(key: key);
@@ -146,9 +147,18 @@ class _RecipeDetailsState extends State<RecipeDetails> {
             child: Card(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
-                child: WebviewScaffold(
-                  url: Uri.dataFromString(text, mimeType: 'text/html').toString(),
-                  resizeToAvoidBottomInset: true,
+                child: Directionality(
+                  textDirection: Lang.isArabic(text) ? TextDirection.rtl : TextDirection.ltr,
+                  child: Html(
+                    data: text,
+                    //Optional parameters:
+                    padding: EdgeInsets.all(8.0),
+                    backgroundColor: Colors.white,
+                    defaultTextStyle: TextStyle(fontFamily: 'serif'),
+                    linkStyle: const TextStyle(
+                      color: Colors.redAccent,
+                    ),
+                  ),
                 ),
               ),
           )),

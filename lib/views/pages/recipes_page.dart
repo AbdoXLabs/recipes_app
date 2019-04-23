@@ -1,6 +1,6 @@
 import 'dart:async';
 
-//import 'package:firebase_admob/firebase_admob.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:recipes_app/utils/admob_utils.dart';
 
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class _RecipesPageState extends State<RecipesPage> {
 
   MainPageViewModel viewModel;
 
-//  InterstitialAd _interstitialAd;
+  InterstitialAd _interstitialAd;
 
   List<Widget> getRecipes(List<ItemRecipes> recipes) {
     List<Widget> widgets = new List<Widget>();
@@ -48,14 +48,13 @@ class _RecipesPageState extends State<RecipesPage> {
     viewModel = MainPageViewModel(api: RecipesService());
     loadData();
 
-
-//    _interstitialAd = AdmobUtils.createInterstitialAd()..load();
+    _interstitialAd = AdmobUtils.createInterstitialAd()..load();
   }
 
   @override
   Widget build(BuildContext context) {
 
-//    _interstitialAd..load()..show();
+    _interstitialAd..load()..show();
 
     return Scaffold(
       appBar: new AppBar(
