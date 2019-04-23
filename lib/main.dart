@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     // GDPR : Non Personalized Ads
-     FirebaseAdMob.instance.initialize(appId: Config.admobAppID, analyticsEnabled: false, trackingId: null);
+     FirebaseAdMob.instance.initialize(appId: Config.admobAppID, analyticsEnabled: Config.personalizedAds, trackingId: null);
 
     return new MaterialApp(
       title: Config.appName,
