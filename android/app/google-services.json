@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "306007546254",
+    "firebase_url": "https://recipes-6e1ab.firebaseio.com",
+    "project_id": "recipes-6e1ab",
+    "storage_bucket": "recipes-6e1ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306007546254:android:f9230aa82faa5e20",
+        "android_client_info": {
+          "package_name": "com.example.recipes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306007546254-aiunnt114uduqoc8i72tfmtpfa2nmj3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyJoVk-5aQGvIpSzgyDwU9EemETTU3nW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306007546254-aiunnt114uduqoc8i72tfmtpfa2nmj3n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "306007546254-s0n5k1i87h8levek22sm9bih9lslq66i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ma.yalabs.recipesApp",
+                "app_store_id": "123456789"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306007546254:android:33ca3b96a2443794",
+        "android_client_info": {
+          "package_name": "ma.yalabs.recipes_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306007546254-aiunnt114uduqoc8i72tfmtpfa2nmj3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyJoVk-5aQGvIpSzgyDwU9EemETTU3nW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306007546254-aiunnt114uduqoc8i72tfmtpfa2nmj3n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "306007546254-s0n5k1i87h8levek22sm9bih9lslq66i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ma.yalabs.recipesApp",
+                "app_store_id": "123456789"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
