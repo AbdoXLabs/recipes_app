@@ -18,4 +18,6 @@ class Config {
 //  static final String interstitial = InterstitialAd.testAdUnitId;
 
   static bool personalizedAds = true;
+
+  static int nClicksBeforeShowInterstitialAd = 2;
 }
