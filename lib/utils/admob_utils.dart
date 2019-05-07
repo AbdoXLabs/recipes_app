@@ -26,12 +26,12 @@ class AdmobUtils {
   }
 
   static InterstitialAd createInterstitialAd() {
-    return InterstitialAd(
-      adUnitId: Config.interstitial,
-      targetingInfo: targetingInfo,
-      listener: (MobileAdEvent event) {
-        print("InterstitialAd event is $event");
-      },
-    );
+      return InterstitialAd(
+        adUnitId: Config.interstitial,
+        targetingInfo: targetingInfo,
+        listener: (MobileAdEvent event) {
+          print("InterstitialAd event is $event");
+        },
+      )..load()..show();
   }
 }

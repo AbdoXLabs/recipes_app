@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:recipes_app/configs/config.dart';
 import 'package:recipes_app/utils/admob_utils.dart';
 
 import 'package:flutter/material.dart';
-import 'package:recipes_app/configs/config.dart';
-import 'package:recipes_app/utils/admob_utils.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:recipes_app/models/item_category.dart';
 import 'package:recipes_app/models/item_recipes.dart';
@@ -48,60 +47,63 @@ class _RecipesPageState extends State<RecipesPage> {
     viewModel = MainPageViewModel(api: RecipesService());
     loadData();
 
-    _interstitialAd = AdmobUtils.createInterstitialAd()..load();
+    print("x4x4 recipes page initState()");
+
+    Config.recipesPageShowAdsCounter ++;
+    if(Config.recipesPageShowAdsCounter % Config.nClicksBeforeShowInterstitialAd == 0)
+      _interstitialAd = AdmobUtils.createInterstitialAd();
   }
 
   @override
   Widget build(BuildContext context) {
 
-    _interstitialAd..load()..show();
-
-    return Scaffold(
-      appBar: new AppBar(
-        centerTitle: true,
-        title: Text(
-          widget.category.category_name,
-          style: TextStyle(
-            fontFamily: 'Distant Galaxy',
+      return Scaffold(
+        appBar: new AppBar(
+          centerTitle: true,
+          title: Text(
+            widget.category.category_name,
+            style: TextStyle(
+              fontFamily: 'Distant Galaxy',
+            ),
           ),
         ),
-      ),
-      body: ScopedModel<MainPageViewModel>(
-        model: viewModel,
-        child: ScopedModelDescendant<MainPageViewModel>(
-          builder: (context, child, model) {
-            return FutureBuilder<List<ItemRecipes>>(
-              future: model.recipes,
-              builder: (_, AsyncSnapshot<List<ItemRecipes>> snapshot) {
-                switch (snapshot.connectionState) {
-                  case ConnectionState.none:
-                  case ConnectionState.active:
-                  case ConnectionState.waiting:
-                    return Center(child: const CircularProgressIndicator());
-                  case ConnectionState.done:
-                    if (snapshot.hasData) {
-                      var recipes = snapshot.data;
-                      return Container(
-                        child: GridView.count(
-                          // Create a grid with 2 columns. If you change the scrollDirection to
-                          // horizontal, this would produce 2 rows.
-                          crossAxisCount: 2,
-                          children: getRecipes(recipes),
-                        ),
-                      );
-                    } else if (snapshot.hasError) {
-                      return NoInternetConnection(
-                        action: () async {
-                          await model.setRecieps(widget.category.cid);
-                        },
-                      );
-                    }
-                }
-              },
-            );
-          },
+        body: ScopedModel<MainPageViewModel>(
+          model: viewModel,
+          child: ScopedModelDescendant<MainPageViewModel>(
+            builder: (context, child, model) {
+              return FutureBuilder<List<ItemRecipes>>(
+                future: model.recipes,
+                builder: (_, AsyncSnapshot<List<ItemRecipes>> snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.none:
+                    case ConnectionState.active:
+                    case ConnectionState.waiting:
+                      return Center(child: const CircularProgressIndicator());
+                    case ConnectionState.done:
+                      if (snapshot.hasData) {
+                        var recipes = snapshot.data;
+                        return Container(
+                          child: GridView.count(
+                            // Create a grid with 2 columns. If you change the scrollDirection to
+                            // horizontal, this would produce 2 rows.
+                            crossAxisCount: 2,
+                            children: getRecipes(recipes),
+                          ),
+                        );
+                      } else if (snapshot.hasError) {
+                        return NoInternetConnection(
+                          action: () async {
+                            await model.setRecieps(widget.category.cid);
+                          },
+                        );
+                      }
+                  }
+                },
+              );
+            },
+          ),
         ),
-      ),
-    );
+      );
+
   }
 }

@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:recipes_app/configs/config.dart';
 import 'package:recipes_app/models/item_recipes.dart';
+import 'package:recipes_app/utils/admob_utils.dart';
 import 'package:recipes_app/utils/lang.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:recipes_app/utils/web_utils.dart';
@@ -25,6 +27,8 @@ class _RecipeDetailsState extends State<RecipeDetails> {
   List<ItemRecipes> favoriteRecipes = [];
   bool _favorite = false;
 
+  InterstitialAd _interstitialAd;
+
   _updateFavorites() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(favoritesKey, json.encode(favoriteRecipes));
@@ -35,14 +39,14 @@ class _RecipeDetailsState extends State<RecipeDetails> {
     List<dynamic> temp = json.decode(prefs.getString(favoritesKey));
     if (temp.length != 0) {
       favoriteRecipes = temp.map((p) => ItemRecipes.fromMap(p)).toList();
-      favoriteRecipes.forEach((recipe) {
+      for (ItemRecipes recipe in favoriteRecipes) {
         if (recipe.news_heading == widget.recipe.news_heading) {
           setState(() {
             _favorite = true;
           });
           return;
         }
-      });
+      }
     }
   }
 
@@ -50,6 +54,10 @@ class _RecipeDetailsState extends State<RecipeDetails> {
   void initState() {
     super.initState();
     _getFavorites();
+
+    Config.recipeDetailsShowAdsCounter ++;
+    if(Config.recipeDetailsShowAdsCounter % Config.nClicksBeforeShowInterstitialAd == 0)
+      _interstitialAd = AdmobUtils.createInterstitialAd();
   }
 
   @override

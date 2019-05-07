@@ -2,7 +2,6 @@ import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:recipes_app/models/item_category.dart';
 import 'package:recipes_app/configs/config.dart';
-import 'package:recipes_app/utils/admob_utils.dart';
 import 'package:recipes_app/utils/lang.dart';
 import 'package:recipes_app/views/pages/recipes_page.dart';
 
@@ -67,17 +66,6 @@ class CategoryListItem extends StatelessWidget {
           builder: (context) => RecipesPage(category: category),
       )
     );
-
-
-    if (clicks % Config.nClicksBeforeShowInterstitialAd == 0) {
-      AdmobUtils.createInterstitialAd()
-        ..load()
-        ..show(
-          anchorType: AnchorType.bottom,
-          anchorOffset: 0.0,
-        );
-      clicks ++;
-    }
 
   }
 

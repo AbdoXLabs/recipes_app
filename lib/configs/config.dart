@@ -20,4 +20,6 @@ class Config {
   static bool personalizedAds = true;
 
   static int nClicksBeforeShowInterstitialAd = 2;
+  static int recipeDetailsShowAdsCounter = 0;
+  static int recipesPageShowAdsCounter = 0;
 }
