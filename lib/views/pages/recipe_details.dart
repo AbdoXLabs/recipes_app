@@ -151,7 +151,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
             ];
           },
           body: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 8.0, bottom: 85, left: 8, right: 8),
             child: Card(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -169,7 +169,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                   ),
                 ),
               ),
-          )),
+            )),
     ));
   }
 }

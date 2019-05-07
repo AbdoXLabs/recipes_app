@@ -1,4 +1,3 @@
-import 'package:firebase_admob/firebase_admob.dart';
 
 class Config {
   static final String base_url = 'http://ios.fasipro.com';

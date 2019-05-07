@@ -104,6 +104,18 @@ class _MainPageState extends State<MainPage>
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
+                                child: Text('What is GDPR ?​', style: TextStyle(fontSize: 18, color: Colors.black87), textAlign: TextAlign.center,),
+                              ),
+                              Text('To comply GDPR regulation you must configure some data :', style: TextStyle(fontSize: 14, color: Colors.black54), textAlign: TextAlign.center,),
+                              SizedBox(
+                                height: 24,
+                              ),
+                              Text('Admob publisher ID : pub-2670899878941271', style: TextStyle(fontSize: 14, color: Colors.black54), textAlign: TextAlign.center,),
+                              SizedBox(
+                                height: 24,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
                                 child: Text('AdMob ads', style: TextStyle(fontSize: 18, color: Colors.black87), textAlign: TextAlign.center,),
                               ),
                               Text('We care about your privecy and data security. We keep this app free by shoing ads.', style: TextStyle(fontSize: 14, color: Colors.black54), textAlign: TextAlign.center,),
