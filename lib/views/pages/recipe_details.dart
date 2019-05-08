@@ -68,10 +68,11 @@ class _RecipeDetailsState extends State<RecipeDetails> {
         "</style></head>" +
         "<body>" +
         widget.recipe.news_description +
+        "</br></br></br>" +
         "</body></html>";
 
     return Scaffold(
-      body: NestedScrollView(
+        body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
@@ -150,26 +151,32 @@ class _RecipeDetailsState extends State<RecipeDetails> {
               ),
             ];
           },
-          body: Padding(
-            padding: const EdgeInsets.only(top: 8.0, bottom: 85, left: 8, right: 8),
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                child: Directionality(
-                  textDirection: Lang.isArabic(text) ? TextDirection.rtl : TextDirection.ltr,
-                  child: Html(
-                    data: text,
-                    //Optional parameters:
-                    padding: EdgeInsets.all(8.0),
-                    backgroundColor: Colors.white,
-                    defaultTextStyle: TextStyle(fontFamily: 'serif'),
-                    linkStyle: const TextStyle(
-                      color: Colors.redAccent,
+          body: ListView(
+            children: <Widget>[
+              Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 40, left: 8, right: 8),
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      child: Directionality(
+                        textDirection: Lang.isArabic(text) ? TextDirection.rtl : TextDirection.ltr,
+                        child: Html(
+                          data: text,
+                          //Optional parameters:
+                          backgroundColor: Colors.white,
+                          defaultTextStyle: TextStyle(fontFamily: 'serif'),
+                          linkStyle: const TextStyle(
+                            color: Colors.redAccent,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
+                  )),
+              SizedBox(
+                height: 85,
               ),
-            )),
-    ));
+            ],
+          ),
+        ));
   }
 }
