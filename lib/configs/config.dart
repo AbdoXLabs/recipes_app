@@ -1,5 +1,5 @@
-
 class Config {
+
   static final String base_url = 'http://ios.fasipro.com';
   static final String terms_url = 'http://www.google.com';
   static final String about_us_url = 'http://www.google.com';
@@ -21,4 +21,5 @@ class Config {
   static int nClicksBeforeShowInterstitialAd = 2;
   static int recipeDetailsShowAdsCounter = 0;
   static int recipesPageShowAdsCounter = 0;
+
 }
